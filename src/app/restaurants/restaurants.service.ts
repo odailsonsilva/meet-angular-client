@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import { ErrorHandler } from '../app.error-handler';
 
 import { Restaurant } from "./restaurant/restaurant.model";
+import {MenuItem} from '../restaurant-detail/menu-item/menu-item.model';
 
 import { MEAT_API } from '../app.api'
 
@@ -30,4 +31,9 @@ export class RestaurantsService {
     .catch(ErrorHandler.handleError)
   }
 
+  menuOfRestaurant(id: string): Observable<any> {
+    return this.http.get(`${MEAT_API}/restaurants/${id}/menu`)
+    .map(res => res.json())
+    .catch(ErrorHandler.handleError)
+  }
 }
